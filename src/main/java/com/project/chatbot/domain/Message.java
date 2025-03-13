@@ -5,20 +5,27 @@ import lombok.*;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-@AllArgsConstructor
-@NoArgsConstructor
+
 @Getter
-@Setter
 @Builder
+@ToString
 public class Message {
 
-    private UUID id;
+    private final UUID id;
 
-    private UUID conversationId;
+    private final UUID conversationId;
 
-    private UUID senderId;
+    private final UUID senderId;
 
-    private String content;
+    private final String content;
 
-    private LocalDateTime timestamp;
+    private final LocalDateTime timestamp;
+
+    public Message(UUID id, UUID conversationId, UUID senderId, String content, LocalDateTime timestamp) {
+        this.id = id;
+        this.conversationId = conversationId;
+        this.senderId = senderId;
+        this.content = content;
+        this.timestamp = timestamp;
+    }
 }
