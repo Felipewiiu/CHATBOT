@@ -16,6 +16,6 @@ public class CreateUserUseCase {
     public Mono<User> execute(User user) {
         return  Mono.when(userValidators.stream()
                 .map(validator -> validator.validate(user)).toList()
-        ).then(userRepositoryGateway.create(user));
+        ).then(userRepositoryGateway.createUser(user));
     }
 }

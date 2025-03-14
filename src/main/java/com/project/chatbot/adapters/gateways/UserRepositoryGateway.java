@@ -7,6 +7,6 @@ import java.util.UUID;
 
 public interface UserRepositoryGateway {
 
-    Mono<User> create(User user);
+    Mono<User> createUser(User user);
     Mono<User> findById(UUID id);
 }
