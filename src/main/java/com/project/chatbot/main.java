@@ -7,7 +7,7 @@ import java.util.UUID;
 public class main {
 
     public static void main(String[] args) {
-        User user = new User(UUID.randomUUID(), "John", "john@gmail.com", false);
+        User user = new User(UUID.randomUUID(), "John", "john@gmail.com");
 
         System.out.println(user.getId());
         user.setAgent(true);

@@ -4,7 +4,6 @@ import lombok.*;
 
 import java.util.UUID;
 
-
 @Getter
 @Setter
 @Builder
@@ -17,12 +16,12 @@ public class User {
 
     private final String phoneNumber;
 
-    private boolean isAgent;
+    private boolean isAgent = false;
 
-    public User(UUID id, String name, String phoneNumber, boolean isAgent) {
+    public User(UUID id, String name, String phoneNumber) {
         this.id = id;
         this.name = name;
         this.phoneNumber = phoneNumber;
-        this.isAgent = isAgent;
+
     }
 }
