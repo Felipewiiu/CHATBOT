@@ -2,6 +2,7 @@ package com.project.chatbot.domain;
 
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Getter
@@ -10,7 +11,7 @@ import java.util.UUID;
 @ToString
 public class User {
 
-    private final UUID id;
+    private final UUID id = UUID.randomUUID();
 
     private final String name;
 
@@ -18,10 +19,7 @@ public class User {
 
     private boolean isAgent = false;
 
-    public User(UUID id, String name, String phoneNumber) {
-        this.id = id;
-        this.name = name;
-        this.phoneNumber = phoneNumber;
+    private LocalDateTime createdAt = LocalDateTime.now();
 
-    }
+
 }
