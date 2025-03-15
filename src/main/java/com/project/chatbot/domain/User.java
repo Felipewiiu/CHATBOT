@@ -11,15 +11,14 @@ import java.util.UUID;
 @ToString
 public class User {
 
-    private final UUID id = UUID.randomUUID();
+    private final UUID id;
 
     private final String name;
 
     private final String phoneNumber;
 
-    private boolean isAgent = false;
+    private boolean isAgent;
 
-    private LocalDateTime createdAt = LocalDateTime.now();
-
+    private LocalDateTime createdAt;
 
 }

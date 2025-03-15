@@ -6,5 +6,5 @@ import reactor.core.publisher.Mono;
 
 public interface UserController {
 
-    Mono<UserDto> create(User user);
+    Mono<UserDto> create(UserDto user);
 }

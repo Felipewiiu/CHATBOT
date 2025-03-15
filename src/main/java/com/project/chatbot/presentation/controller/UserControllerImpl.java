@@ -4,11 +4,10 @@ import com.project.chatbot.adapters.controllers.dto.UserDto;
 import com.project.chatbot.adapters.controllers.user.UserController;
 import com.project.chatbot.application.usecases.CreateUserUseCase;
 import com.project.chatbot.domain.User;
+import com.project.chatbot.presentation.mapper.UserControllerMapper;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
 @RestController
@@ -17,10 +16,14 @@ import reactor.core.publisher.Mono;
 public class UserControllerImpl implements UserController {
 
     private final CreateUserUseCase createUserUseCase;
+    private final UserControllerMapper userControllerMapper;
 
     @Override
     @PostMapping("/create")
-    public Mono<UserDto> create(User user) {
-        return null;
+    @ResponseStatus(HttpStatus.CREATED)
+    public Mono<UserDto> create(@RequestBody UserDto userDto) {
+        return createUserUseCase
+                .execute(userControllerMapper.toDomain(userDto))
+                .map(userControllerMapper::toDto);
     }
 }
