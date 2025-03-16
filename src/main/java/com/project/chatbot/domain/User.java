@@ -19,7 +19,6 @@ public class User {
 
     private boolean isAgent;
 
-    @Builder.Default
-    private LocalDateTime createdAt = LocalDateTime.now();
+    private LocalDateTime createdAt;
 
 }
