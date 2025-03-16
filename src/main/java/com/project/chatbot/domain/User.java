@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Getter
-@Setter
+@AllArgsConstructor
 @Builder
 @ToString
 public class User {
@@ -19,6 +19,7 @@ public class User {
 
     private boolean isAgent;
 
-    private LocalDateTime createdAt;
+    @Builder.Default
+    private LocalDateTime createdAt = LocalDateTime.now();
 
 }
