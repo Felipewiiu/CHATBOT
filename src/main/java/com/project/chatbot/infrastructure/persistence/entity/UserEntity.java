@@ -8,7 +8,6 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Getter
-@AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Table("users")
@@ -23,7 +22,14 @@ public class UserEntity {
 
     private boolean isAgent;
 
-    @Builder.Default
-    LocalDateTime createdAt = LocalDateTime.now();
+    LocalDateTime createdAt;
+
+    public UserEntity(UUID id, String name, String phoneNumber, boolean isAgent, LocalDateTime createdAt) {
+        this.id = id;
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.isAgent = isAgent;
+        this.createdAt = LocalDateTime.now();
+    }
 
 }
