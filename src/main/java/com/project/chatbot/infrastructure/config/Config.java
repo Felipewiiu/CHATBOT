@@ -2,6 +2,7 @@ package com.project.chatbot.infrastructure.config;
 
 import com.project.chatbot.adapters.gateways.UserRepositoryGateway;
 import com.project.chatbot.application.usecases.users.CreateUserUseCase;
+import com.project.chatbot.application.usecases.users.FindUserByIdUseCase;
 import com.project.chatbot.application.validators.UserValidator;
 import com.project.chatbot.infrastructure.gateway.UserRepositoryGatewayImpl;
 import com.project.chatbot.infrastructure.mapper.UserMapper;
@@ -27,5 +28,13 @@ public class Config {
             List<UserValidator> listUserValidation
     ) {
         return new CreateUserUseCase(userRepositoryGateway, listUserValidation);
+    }
+
+    @Bean
+    FindUserByIdUseCase customFindUserByIdUseCase(
+            @Qualifier("customUserRepositoryGatewayImpl") UserRepositoryGateway userRepositoryGateway
+
+    ){
+        return new FindUserByIdUseCase(userRepositoryGateway);
     }
 }

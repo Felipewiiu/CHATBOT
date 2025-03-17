@@ -25,7 +25,8 @@ public class UserRepositoryGatewayImpl implements UserRepositoryGateway {
 
     @Override
     public Mono<User> findUserById(UUID id) {
-        return null;
+        return userRepository.findById(id)
+                .map(userMapper::toDomain);
     }
 
     @Override

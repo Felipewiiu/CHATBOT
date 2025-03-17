@@ -1,6 +1,7 @@
 package com.project.chatbot.infrastructure.exeptionhandler;
 
 import com.project.chatbot.application.exeptions.DuplicatePhoneException;
+import com.project.chatbot.application.exeptions.NotFoundUserException;
 import jakarta.validation.ValidationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -55,5 +56,20 @@ public class ControllerExceptionHandler { // Corrigido o typo no nome
         error.setPath(exchange.getRequest().getPath().value());
 
         return Mono.just(ResponseEntity.status(httpStatus).body(error));
+    }
+
+    @ExceptionHandler(NotFoundUserException.class)
+    public Mono<ResponseEntity<StandardError>> handleNotFoundUserExeption(NotFoundUserException ex, ServerWebExchange exchange) {
+        HttpStatus httpStatus = HttpStatus.NOT_FOUND;
+        StandardError error = new StandardError();
+
+        error.setTimestamp(Instant.now());
+        error.setStatus(httpStatus.value());
+        error.setError("User not Found");
+        error.setMessage(ex.getMessage());
+        error.setPath(exchange.getRequest().getPath().value());
+
+        return Mono.just(ResponseEntity.status(httpStatus).body(error));
+
     }
 }
