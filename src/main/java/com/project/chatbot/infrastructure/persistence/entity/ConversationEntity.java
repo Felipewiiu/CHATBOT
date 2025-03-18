@@ -12,13 +12,13 @@ import java.util.UUID;
 @Getter
 @Builder
 @Table("conversations")
-@AllArgsConstructor
 public class ConversationEntity {
 
     @Id
     private final UUID id;
 
-    private final UUID userOneId;
+    @Builder.Default
+    private final UUID userOneId = UUID.fromString("aa520be6-9c7d-422d-ac9d-1b98270b93ae");
 
     private final UUID userTwoId;
 

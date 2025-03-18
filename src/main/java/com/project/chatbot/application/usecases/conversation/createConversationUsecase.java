@@ -10,7 +10,7 @@ public class createConversationUsecase {
 
     private final ConversationRepositoryGateway conversationRepositoryGateway;
 
-    public Mono<Void> createConversation(Conversation conversation) {
+    public Mono<Conversation> createConversation(Conversation conversation) {
         return conversationRepositoryGateway.createConversation(conversation);
     }
 

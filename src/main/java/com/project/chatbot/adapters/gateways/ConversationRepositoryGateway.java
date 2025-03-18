@@ -5,5 +5,5 @@ import reactor.core.publisher.Mono;
 
 public interface ConversationRepositoryGateway {
 
-    Mono<Void> createConversation(Conversation conversation);
+    Mono<Conversation> createConversation(Conversation conversation);
 }

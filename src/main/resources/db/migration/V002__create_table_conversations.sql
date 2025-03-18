@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS conversations (
-    id UUID PRIMARY KEY,
+    id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
     user_one_id UUID NOT NULL,
     user_two_id UUID NOT NULL,
     created_at TIMESTAMP,

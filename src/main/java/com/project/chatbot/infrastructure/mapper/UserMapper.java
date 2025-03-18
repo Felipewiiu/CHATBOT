@@ -14,6 +14,4 @@ public interface UserMapper {
     User toDomain(UserEntity userEntity);
 
 
-
-
 }
