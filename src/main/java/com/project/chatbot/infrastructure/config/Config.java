@@ -24,7 +24,7 @@ public class Config {
     }
 
     @Bean
-    IntegrityUserValidator customIntegrityUserValidator(UserRepositoryGateway userRepositoryGateway){
+    IntegrityUserValidator customIntegrityUserValidator(){
         return new IntegrityUserValidator();
     }
 
