@@ -1,6 +1,7 @@
 package com.project.chatbot.infrastructure.exeptionhandler;
 
 import com.project.chatbot.application.exeptions.DuplicatePhoneException;
+import com.project.chatbot.application.exeptions.NotFoundPhoneNumberException;
 import com.project.chatbot.application.exeptions.NotFoundUserException;
 import jakarta.validation.ValidationException;
 import org.springframework.http.HttpStatus;
@@ -13,7 +14,7 @@ import reactor.core.publisher.Mono;
 import java.time.Instant;
 
 @ControllerAdvice
-public class ControllerExceptionHandler { // Corrigido o typo no nome
+public class ControllerExceptionHandler {
 
     @ExceptionHandler(ValidationException.class)
     public Mono<ResponseEntity<StandardError>> validateError(ValidationException ex, ServerWebExchange exchange) {
@@ -71,5 +72,19 @@ public class ControllerExceptionHandler { // Corrigido o typo no nome
 
         return Mono.just(ResponseEntity.status(httpStatus).body(error));
 
+    }
+
+    @ExceptionHandler(NotFoundPhoneNumberException.class)
+    public Mono<ResponseEntity<StandardError>> handleNotFoundPhoneNumberException(NotFoundPhoneNumberException ex, ServerWebExchange exchange) {
+        HttpStatus httpStatus = HttpStatus.NOT_FOUND;
+        StandardError error = new StandardError();
+
+        error.setTimestamp(Instant.now());
+        error.setStatus(httpStatus.value());
+        error.setError("Not Found");
+        error.setMessage(ex.getMessage());
+        error.setPath(exchange.getRequest().getPath().value());
+
+        return Mono.just(ResponseEntity.status(httpStatus).body(error));
     }
 }

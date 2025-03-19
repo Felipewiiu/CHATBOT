@@ -12,5 +12,7 @@ public interface UserRepositoryGateway {
 
     Mono<User> findUserById(UUID id);
 
+    Mono<User> findByPhoneNumber(String phoneNumber);
+
     Flux<User> findAllUsers();
 }

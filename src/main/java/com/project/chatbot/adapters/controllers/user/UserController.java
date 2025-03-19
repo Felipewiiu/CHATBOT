@@ -11,4 +11,6 @@ public interface UserController {
     Mono<ResponseEntity<UserDto>> create(UserDto user);
 
     Mono<ResponseEntity<UserDto>> findById(UUID id);
+
+    Mono<ResponseEntity<UserDto>> findByPhoneNumber(String phoneNumber);
 }
