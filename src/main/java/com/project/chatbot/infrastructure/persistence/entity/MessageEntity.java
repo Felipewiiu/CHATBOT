@@ -22,6 +22,7 @@ public class MessageEntity {
 
     private final String content;
 
-    private final LocalDateTime timestamp;
+    @Builder.Default
+    private final LocalDateTime timestamp = LocalDateTime.now();
 
 }

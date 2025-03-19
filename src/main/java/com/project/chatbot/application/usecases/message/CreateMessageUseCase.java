@@ -11,6 +11,7 @@ public class CreateMessageUseCase {
     private final MessageRepositoryGateway messageRepositoryGateway;
 
     public Mono<Message> createMessage(Message message) {
+
         return messageRepositoryGateway.createMessage(message);
     }
 }

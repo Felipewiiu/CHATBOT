@@ -22,6 +22,7 @@ public class ConversationEntity {
 
     private final UUID userTwoId;
 
-    private final LocalDateTime createdAt;
+    @Builder.Default
+    private final LocalDateTime createdAt = LocalDateTime.now();
 
 }

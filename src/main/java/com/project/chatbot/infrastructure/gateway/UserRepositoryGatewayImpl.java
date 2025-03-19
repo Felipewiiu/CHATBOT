@@ -1,17 +1,14 @@
 package com.project.chatbot.infrastructure.gateway;
 
 import com.project.chatbot.adapters.gateways.UserRepositoryGateway;
-import com.project.chatbot.application.exeptions.DuplicatePhoneException;
 import com.project.chatbot.domain.User;
 import com.project.chatbot.infrastructure.mapper.UserMapper;
-import com.project.chatbot.infrastructure.persistence.entity.UserEntity;
 import com.project.chatbot.infrastructure.persistence.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.NoSuchElementException;
 import java.util.UUID;
 
 @RequiredArgsConstructor
