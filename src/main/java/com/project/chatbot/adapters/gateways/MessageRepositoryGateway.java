@@ -5,5 +5,5 @@ import reactor.core.publisher.Mono;
 
 public interface MessageRepositoryGateway {
 
-    Mono<Message> createMessage(Message message);
+    Mono<Message> createMessage(Message message, String phone);
 }
