@@ -11,6 +11,7 @@ import com.project.chatbot.domain.User;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @RequiredArgsConstructor
@@ -29,9 +30,27 @@ public class CreateMessageUseCase {
                 .flatMap(exists -> {
                     if (!exists) {
                         return createUserUseCase.execute(user)
-                                .then(Mono.empty());
+                                .flatMap( newUser -> {
+                                    Conversation conversation = Conversation.builder()
+                                            .userOneId(UUID.fromString("698b1b94-07e9-4f8f-9854-514911b7ef06"))
+                                            .userTwoId(newUser.getId())
+                                            .createdAt(LocalDateTime.now())
+                                            .build();
+                                   return createConversationUsecase.createConversation(conversation)
+                                            .flatMap( conversation1 -> {
+                                                Message message = Message.builder()
+                                                        .conversationId(conversation1.getId())
+                                                        .content(messageContent)
+                                                        .senderId(newUser.getId())
+                                                        .timestamp(LocalDateTime.now())
+                                                        .build();
+                                               return messageRepositoryGateway.createMessage(message);
+                                            } ).then(Mono.empty());
+                                } ).then(Mono.empty());
+
                     } else {
                         System.out.println("Usuário já existe");
+
                         return Mono.empty();
                     }
                 });
