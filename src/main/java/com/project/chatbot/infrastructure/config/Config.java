@@ -4,6 +4,7 @@ import com.project.chatbot.adapters.gateways.ConversationRepositoryGateway;
 import com.project.chatbot.adapters.gateways.MessageRepositoryGateway;
 import com.project.chatbot.adapters.gateways.UserRepositoryGateway;
 import com.project.chatbot.application.usecases.conversation.CreateConversationUsecase;
+import com.project.chatbot.application.usecases.conversation.FindConversationByUserIdUseCase;
 import com.project.chatbot.application.usecases.message.CreateMessageUseCase;
 import com.project.chatbot.application.usecases.users.CreateUserUseCase;
 import com.project.chatbot.application.usecases.users.FindByPhoneNumberUseCase;
@@ -43,14 +44,20 @@ public class Config {
                                                     CreateUserUseCase createUserUseCase,
                                                     FindByPhoneNumberUseCase findByPhoneNumberUseCase,
                                                     CreateConversationUsecase createConversationUsecase,
-                                                    UserRepositoryGateway userRepositoryGateway){
+                                                    UserRepositoryGateway userRepositoryGateway,
+                                                    FindConversationByUserIdUseCase findConversationByUserIdUseCase){
         return new CreateMessageUseCase(messageRepositoryGateway,
-                createUserUseCase, findByPhoneNumberUseCase, createConversationUsecase, userRepositoryGateway);
+                createUserUseCase, findByPhoneNumberUseCase, createConversationUsecase, userRepositoryGateway, findConversationByUserIdUseCase);
     }
 
     @Bean
     CreateConversationUsecase customCreateConversationUsecase(ConversationRepositoryGateway conversationRepositoryGateway){
         return new CreateConversationUsecase(conversationRepositoryGateway);
+    }
+
+    @Bean
+    FindConversationByUserIdUseCase customFindConversationByUserIdUseCase(ConversationRepositoryGateway conversationRepositoryGateway){
+        return new FindConversationByUserIdUseCase(conversationRepositoryGateway);
     }
 
 }

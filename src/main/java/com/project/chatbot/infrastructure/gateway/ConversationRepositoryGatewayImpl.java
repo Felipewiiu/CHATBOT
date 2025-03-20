@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
+
 @RequiredArgsConstructor
 @Service
 public class ConversationRepositoryGatewayImpl implements ConversationRepositoryGateway {
@@ -19,5 +21,10 @@ public class ConversationRepositoryGatewayImpl implements ConversationRepository
     public Mono<Conversation> createConversation(Conversation conversation) {
       return conversationRepository.save(conversationMapper.toEntity(conversation))
               .map(conversationMapper::toDomain);
+    }
+
+    @Override
+    public Mono<Conversation> findByUserId(UUID userId) {
+        return conversationRepository.findByUserTwoId(userId);
     }
 }

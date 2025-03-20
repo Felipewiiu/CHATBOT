@@ -3,6 +3,7 @@ package com.project.chatbot.application.usecases.message;
 import com.project.chatbot.adapters.gateways.MessageRepositoryGateway;
 import com.project.chatbot.adapters.gateways.UserRepositoryGateway;
 import com.project.chatbot.application.usecases.conversation.CreateConversationUsecase;
+import com.project.chatbot.application.usecases.conversation.FindConversationByUserIdUseCase;
 import com.project.chatbot.application.usecases.users.CreateUserUseCase;
 import com.project.chatbot.application.usecases.users.FindByPhoneNumberUseCase;
 import com.project.chatbot.domain.Conversation;
@@ -22,6 +23,7 @@ public class CreateMessageUseCase {
     private final FindByPhoneNumberUseCase findByPhoneNumberUseCase;
     private final CreateConversationUsecase createConversationUsecase;
     private final UserRepositoryGateway userRepositoryGateway;
+    private final FindConversationByUserIdUseCase findConversationByUserIdUseCase;
 
     public Mono<Void> createMessage(String phone, String messageContent) {
         User user = User.builder().name("cliente").phoneNumber(phone).build();
@@ -50,8 +52,19 @@ public class CreateMessageUseCase {
 
                     } else {
                         System.out.println("Usuário já existe");
+                        return findByPhoneNumberUseCase.execute(phone).flatMap( userFound -> {
+                            return findConversationByUserIdUseCase.execute(userFound.getId())
+                                    .flatMap( conversation ->  {
+                                        Message message = Message.builder()
+                                                .conversationId(conversation.getId())
+                                                .content(messageContent)
+                                                .senderId(userFound.getId())
+                                                .timestamp(LocalDateTime.now())
+                                                .build();
+                                        return messageRepositoryGateway.createMessage(message);
+                                    });
+                        }).then(Mono.empty());
 
-                        return Mono.empty();
                     }
                 });
 
