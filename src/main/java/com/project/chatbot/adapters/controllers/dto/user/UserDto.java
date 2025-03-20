@@ -1,4 +1,4 @@
-package com.project.chatbot.adapters.controllers.dto;
+package com.project.chatbot.adapters.controllers.dto.user;
 
 import java.time.LocalDateTime;
 

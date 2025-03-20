@@ -16,7 +16,7 @@ public class MessageRepositoryGatewayImpl implements MessageRepositoryGateway {
     private final MessageMapper messageMapper;
 
     @Override
-    public Mono<Message> createMessage(Message message, String phone) {
+    public Mono<Message> createMessage(Message message) {
         return messageRepository.save(messageMapper.toEntity(message))
                 .map(messageMapper::ToDomain);
     }

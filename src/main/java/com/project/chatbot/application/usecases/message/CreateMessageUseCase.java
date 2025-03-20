@@ -17,14 +17,8 @@ public class CreateMessageUseCase {
     private final UserRepositoryGateway userRepositoryGateway;
     private final ConversationRepositoryGateway conversationRepositoryGateway;
 
-    public Mono<Message> createMessage(Message message, String phone) {
-          Mono<User> user = userRepositoryGateway.findByPhoneNumber(phone);
+    public Mono<Message> createMessage(Message message) {
 
-//          if (user for vazio) {
-//              conversationRepositoryGateway.createConversation(new Conversation());
-//        }
-
-
-        return messageRepositoryGateway.createMessage(message, phone);
+        return messageRepositoryGateway.createMessage(message);
     }
 }
