@@ -52,18 +52,17 @@ public class CreateMessageUseCase {
 
                     } else {
                         System.out.println("Usuário já existe");
-                        return findByPhoneNumberUseCase.execute(phone).flatMap( userFound -> {
-                            return findConversationByUserIdUseCase.execute(userFound.getId())
-                                    .flatMap( conversation ->  {
-                                        Message message = Message.builder()
-                                                .conversationId(conversation.getId())
-                                                .content(messageContent)
-                                                .senderId(userFound.getId())
-                                                .timestamp(LocalDateTime.now())
-                                                .build();
-                                        return messageRepositoryGateway.createMessage(message);
-                                    });
-                        }).then(Mono.empty());
+                        return findByPhoneNumberUseCase.execute(phone).flatMap( userFound ->
+                                findConversationByUserIdUseCase.execute(userFound.getId())
+                                .flatMap( conversation ->  {
+                                    Message message = Message.builder()
+                                            .conversationId(conversation.getId())
+                                            .content(messageContent)
+                                            .senderId(userFound.getId())
+                                            .timestamp(LocalDateTime.now())
+                                            .build();
+                                    return messageRepositoryGateway.createMessage(message);
+                                })).then(Mono.empty());
 
                     }
                 });
