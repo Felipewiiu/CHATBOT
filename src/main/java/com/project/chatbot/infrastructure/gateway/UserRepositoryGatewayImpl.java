@@ -37,6 +37,11 @@ public class UserRepositoryGatewayImpl implements UserRepositoryGateway {
     }
 
     @Override
+    public Mono<Boolean> existsByPhoneNumber(String phoneNumber) {
+        return userRepository.existsByPhoneNumber(phoneNumber);
+    }
+
+    @Override
     public Flux<User> findAllUsers() {
         return null;
     }

@@ -14,5 +14,7 @@ public interface UserRepositoryGateway {
 
     Mono<User> findByPhoneNumber(String phoneNumber);
 
+    Mono<Boolean> existsByPhoneNumber(String phoneNumber);
+
     Flux<User> findAllUsers();
 }

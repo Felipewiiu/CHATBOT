@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;
 
 @RequiredArgsConstructor
-public class createConversationUsecase {
+public class CreateConversationUsecase {
 
     private final ConversationRepositoryGateway conversationRepositoryGateway;
 

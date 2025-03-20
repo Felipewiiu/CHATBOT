@@ -1,7 +1,8 @@
 package com.project.chatbot.presentation.controller;
 
 import com.project.chatbot.adapters.controllers.dto.webhook.MessageDto;
-import com.project.chatbot.adapters.controllers.user.WebHookController;
+import com.project.chatbot.adapters.controllers.message.MessageController;
+import com.project.chatbot.application.usecases.message.CreateMessageUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,13 +13,14 @@ import reactor.core.publisher.Mono;
 @RestController
 @RequestMapping("/chat")
 @RequiredArgsConstructor
-public class WebHookControllerImpl implements WebHookController {
+public class MessageControllerImpl implements MessageController {
+
+    private final CreateMessageUseCase createMessageUseCase;
 
     @Override
     @PostMapping
-    public Mono<MessageDto> recieveWhatsappMessage(@RequestBody MessageDto message) {
-        System.out.println(message.phone());
-
-        return Mono.just(message);
+    public Mono<Void> recieveWhatsappMessage(@RequestBody MessageDto message) {
+        System.out.println(message);
+        return createMessageUseCase.createMessage(message.phone(), message.text());
     }
 }
