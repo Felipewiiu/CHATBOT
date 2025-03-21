@@ -1,7 +1,11 @@
-## 🎯 CHATBOT
+## 🎯 BOTHUB
 
 Esse projeto tem o objetivo de estabelecer o gerenciamento de relacionamento com o cliente através da integração das
 conversas pelo whatsapp entre empresa e cliente.
+
+## FLUXO DE PROCESSOS
+
+![img.png](img.png)
 
 ## OBSERVAÇÕES TÉCNICAS - Ajuda ao aprendizado
 
