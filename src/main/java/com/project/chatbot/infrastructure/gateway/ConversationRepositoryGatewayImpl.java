@@ -25,6 +25,6 @@ public class ConversationRepositoryGatewayImpl implements ConversationRepository
 
     @Override
     public Mono<Conversation> findByUserId(UUID userId) {
-        return conversationRepository.findByUserTwoId(userId);
+        return conversationRepository.findByCustomerId(userId);
     }
 }

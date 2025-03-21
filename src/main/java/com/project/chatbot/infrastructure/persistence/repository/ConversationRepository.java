@@ -10,5 +10,5 @@ import java.util.UUID;
 
 @Repository
 public interface ConversationRepository extends ReactiveCrudRepository<ConversationEntity, UUID> {
-    Mono<Conversation> findByUserTwoId(UUID userTwoId);
+    Mono<Conversation> findByCustomerId(UUID userTwoId);
 }

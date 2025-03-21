@@ -7,7 +7,7 @@ import com.project.chatbot.application.usecases.conversation.CreateConversationU
 import com.project.chatbot.application.usecases.conversation.FindConversationByUserIdUseCase;
 import com.project.chatbot.application.usecases.message.CreateMessageUseCase;
 import com.project.chatbot.application.usecases.users.CreateUserUseCase;
-import com.project.chatbot.application.usecases.users.FindByPhoneNumberUseCase;
+import com.project.chatbot.application.usecases.users.FindUserByPhoneNumberUseCase;
 import com.project.chatbot.application.usecases.users.FindUserByIdUseCase;
 import com.project.chatbot.application.validators.IntegrityUserValidator;
 import com.project.chatbot.application.validators.UserValidator;
@@ -30,8 +30,8 @@ public class Config {
     }
 
     @Bean
-    FindByPhoneNumberUseCase customFindByPhoneNumberUseCase(UserRepositoryGateway userRepositoryGateway){
-        return new FindByPhoneNumberUseCase(userRepositoryGateway);
+    FindUserByPhoneNumberUseCase customFindByPhoneNumberUseCase(UserRepositoryGateway userRepositoryGateway){
+        return new FindUserByPhoneNumberUseCase(userRepositoryGateway);
     }
 
     @Bean
@@ -42,12 +42,12 @@ public class Config {
     @Bean
     CreateMessageUseCase customCreateMessageUseCase(MessageRepositoryGateway messageRepositoryGateway,
                                                     CreateUserUseCase createUserUseCase,
-                                                    FindByPhoneNumberUseCase findByPhoneNumberUseCase,
+                                                    FindUserByPhoneNumberUseCase findUserByPhoneNumberUseCase,
                                                     CreateConversationUsecase createConversationUsecase,
                                                     UserRepositoryGateway userRepositoryGateway,
                                                     FindConversationByUserIdUseCase findConversationByUserIdUseCase){
         return new CreateMessageUseCase(messageRepositoryGateway,
-                createUserUseCase, findByPhoneNumberUseCase, createConversationUsecase, userRepositoryGateway, findConversationByUserIdUseCase);
+                createUserUseCase, findUserByPhoneNumberUseCase, createConversationUsecase, userRepositoryGateway, findConversationByUserIdUseCase);
     }
 
     @Bean

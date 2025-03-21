@@ -12,7 +12,7 @@ public interface UserRepositoryGateway {
 
     Mono<User> findUserById(UUID id);
 
-    Mono<User> findByPhoneNumber(String phoneNumber);
+    Mono<User> findUserByPhoneNumber(String phoneNumber);
 
     Mono<Boolean> existsByPhoneNumber(String phoneNumber);
 

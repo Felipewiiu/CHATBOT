@@ -31,7 +31,7 @@ public class UserRepositoryGatewayImpl implements UserRepositoryGateway {
     }
 
     @Override
-    public Mono<User> findByPhoneNumber(String phoneNumber) {
+    public Mono<User> findUserByPhoneNumber(String phoneNumber) {
         return userRepository.findByPhoneNumber(phoneNumber).map(userMapper::toDomain);
 
     }

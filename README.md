@@ -1,4 +1,7 @@
-# CHATBOT
+## 🎯 CHATBOT
+
+Esse projeto tem o objetivo de estabelecer o gerenciamento de relacionamento com o cliente através da integração das
+conversas pelo whatsapp entre empresa e cliente.
 
 ## OBSERVAÇÕES TÉCNICAS - Ajuda ao aprendizado
 

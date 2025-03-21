@@ -1,6 +1,6 @@
 package com.project.chatbot.presentation.mapper;
 
-import com.project.chatbot.adapters.controllers.dto.webhook.MessageDto;
+import com.project.chatbot.adapters.controllers.dto.message.MessageDto;
 import com.project.chatbot.domain.Message;
 import org.mapstruct.Mapper;
 

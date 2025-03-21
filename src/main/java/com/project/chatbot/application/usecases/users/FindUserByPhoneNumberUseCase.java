@@ -7,12 +7,12 @@ import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;
 
 @RequiredArgsConstructor
-public class FindByPhoneNumberUseCase {
+public class FindUserByPhoneNumberUseCase {
 
     private final UserRepositoryGateway userRepositoryGateway;
 
     public Mono<User> execute(String phoneNumber) {
-        return userRepositoryGateway.findByPhoneNumber(phoneNumber)
+        return userRepositoryGateway.findUserByPhoneNumber(phoneNumber)
                 .switchIfEmpty(Mono.error(new NotFoundPhoneNumberException(phoneNumber)));
     }
 }

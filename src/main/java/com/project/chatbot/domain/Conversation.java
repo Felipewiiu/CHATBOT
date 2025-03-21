@@ -7,21 +7,18 @@ import java.util.UUID;
 
 @Getter
 @Builder
+@AllArgsConstructor
 @ToString
 public class Conversation {
 
     private final UUID id;
 
-    private final UUID userOneId;
+    private final UUID agentId;
 
-    private final UUID userTwoId;
+    private final UUID customerId;
 
-    private final LocalDateTime createdAt;
+    @Builder.Default
+    private final LocalDateTime createdAt = LocalDateTime.now();
 
-    public Conversation(UUID id, UUID userOneId, UUID userTwoId, LocalDateTime createdAt) {
-        this.id = id;
-        this.userOneId = userOneId;
-        this.userTwoId = userTwoId;
-        this.createdAt = createdAt;
-    }
+
 }
