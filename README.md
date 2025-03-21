@@ -5,7 +5,7 @@ conversas pelo whatsapp entre empresa e cliente.
 
 ## FLUXO DE PROCESSOS
 
-![img.png](img.png)
+![img.png](images/img.png)
 
 ## OBSERVAÇÕES TÉCNICAS - Ajuda ao aprendizado
 

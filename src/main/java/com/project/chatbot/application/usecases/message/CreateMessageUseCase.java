@@ -21,7 +21,6 @@ import java.util.UUID;
 public class CreateMessageUseCase {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CreateMessageUseCase.class);
-    private static final UUID SYSTEM_USER_ID = UUID.fromString("279de61b-5f9e-453c-9b62-6b689f3f92fc");
 
     private final MessageRepositoryGateway messageRepositoryGateway;
     private final CreateUserUseCase createUserUseCase;
